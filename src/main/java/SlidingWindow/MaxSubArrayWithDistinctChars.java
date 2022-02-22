@@ -14,6 +14,7 @@ public class MaxSubArrayWithDistinctChars {
         System.out.println(maxSubArrayWithDistinctChars.maxKDistinctCharArray("araaci",2));
         System.out.println(maxSubArrayWithDistinctChars.maxKDistinctCharArray("araaci",1));
         System.out.println(maxSubArrayWithDistinctChars.maxKDistinctCharArray("cbbebi",3));
+        //make sure you see the edge cases where , string inempty etc
     }
     int maxKDistinctCharArray(String s, int k){
         //start with the window at the beginning
