@@ -72,7 +72,6 @@ public class MinimunWindowSubstring {
             sMap[s.charAt(endPointer) - 'A']++;
             if(sMap[s.charAt(endPointer) - 'A'] == tMap[s.charAt(endPointer) - 'A'] && tMap[s.charAt(endPointer) - 'A'] != 0)
                 letters++;
-//            endPointer++;
             while(letters == t.length() && startPointer <= endPointer){
                 char start = s.charAt(startPointer);
                 sMap[s.charAt(startPointer) - 'A']--;
