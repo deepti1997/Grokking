@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class MinimunWindowSubstring {
     public static void main(String[] args) {
-        System.out.println(minWindow("aa","aa"));
+        System.out.println(minWindow("cabwefgewcwaefgcf","ccae"));
 
     }
 
@@ -62,7 +62,9 @@ public class MinimunWindowSubstring {
             st.add(t.charAt(i));
             tMap[t.charAt(i) - 'A']++;
 
-        };
+        }
+        if(isSubString(sMap,tMap,t))
+            return s.substring(0,t.length());
         int letters =0;
         int startPointer = 0;
         int endPointer = 0;
@@ -72,7 +74,8 @@ public class MinimunWindowSubstring {
             sMap[s.charAt(endPointer) - 'A']++;
             if(sMap[s.charAt(endPointer) - 'A'] == tMap[s.charAt(endPointer) - 'A'] && tMap[s.charAt(endPointer) - 'A'] != 0)
                 letters++;
-            while(letters == t.length() && startPointer <= endPointer){
+//            endPointer++;
+            while(letters == st.size() && startPointer <= endPointer){
                 char start = s.charAt(startPointer);
                 sMap[s.charAt(startPointer) - 'A']--;
                 if (endPointer - startPointer + 1 < smallest) {
@@ -88,5 +91,13 @@ public class MinimunWindowSubstring {
         }
 
         return ans;
+    }
+
+    public static boolean isSubString(int[] s1, int[] s2, String t){
+       for(int i=0;i< t.length();i++){
+           if(s2[t.charAt(i) - 'A'] > s1[t.charAt(i) - 'A'])
+               return false;
+       }
+       return true;
     }
 }
