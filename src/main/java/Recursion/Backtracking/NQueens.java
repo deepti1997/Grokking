@@ -1,14 +1,21 @@
 package Recursion.Backtracking;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NQueens {
     public static void main(String[] args) {
         int n = 4;
         boolean[][] board  =new boolean[n][n];
-        System.out.println(queens(board,0));
+        List<List<String>> solution = new ArrayList<>();
+        System.out.println(queens(board,0,solution));
+        System.out.println(solution);
+
     }
-    static int queens(boolean[][] board, int row){
+    static int queens(boolean[][] board, int row,List<List<String>> solution){
         if(row == board.length){
             display(board);
+            populateList(board,solution);
             System.out.println();
             return 1;
         }
@@ -17,7 +24,7 @@ public class NQueens {
             if (isSafe(board,row,i)){
                 //place the queen
                 board[row][i] = true;
-                count += queens(board,row+1);
+                count += queens(board,row+1,solution);
                 board[row][i] = false;
             }
         }
@@ -54,5 +61,25 @@ public class NQueens {
             }
             System.out.println();
         }
+    }
+
+    static void populateList(boolean[][] board,List<List<String>> solution){
+        List<String> inner = new ArrayList<>();
+        for (boolean[] row : board){
+            String onePath = "";
+            for(boolean element : row){
+                if(element){
+                    System.out.print("Q ");
+                    onePath += "Q";
+                }
+                else {
+                    System.out.print("X ");
+                    onePath += ".";
+                }
+            }
+            inner.add(onePath);
+            System.out.println();
+        }
+        solution.add(inner);
     }
 }
